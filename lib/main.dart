@@ -1,125 +1,204 @@
-import 'package:flutter/material.dart';
+import 'dart:core';
+
+import 'package:dart/src/enums/e_main.dart';
+import 'package:dart/src/models/m_main.dart';
 
 void main() {
-  runApp(const MyApp());
-}
+  // Crear perfiles
+  Profile perfil1 = Profile(
+    province: "Madrid",
+    gender: Gender.female,
+    heightRange: "1.70m",
+    ageRange: "25-30",
+    hairColor: "Rubio",
+    eyeColor: "Azules",
+    specialty: Specialty.model,
+    experience: "5 años",
+  );
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  Profile perfil2 = Profile(
+    province: "Barcelona",
+    gender: Gender.male,
+    heightRange: "1.80m",
+    ageRange: "30-35",
+    hairColor: "Castaño",
+    eyeColor: "Verdes",
+    specialty: Specialty.actor,
+    experience: "10 años",
+  );
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+  // Crear representantes
+  Representative representante1 = Representative(
+    name: "Juan Pérez",
+    address: "Calle Falsa 123",
+    phone: "555-1234",
+  );
+
+  Representative representante2 = Representative(
+    name: "María López",
+    address: "Avenida Siempre Viva 742",
+    phone: "555-5678",
+  );
+
+  // Crear candidatos
+  Candidate candidato1 = Candidate(
+    code: "C001",
+    name: "Ana García",
+    address: "Calle Mayor 1",
+    phone: "555-9876",
+    birthDate: DateTime.now(),
+    photo: "foto1.jpg",
+    province: "Madrid",
+    gender: Gender.female,
+    heightRange: "1.70m",
+    ageRange: "25-30",
+    hairColor: "Rubio",
+    eyeColor: "Azules",
+    specialty: Specialty.model,
+    experience: "5 años",
+    representative: representante1,
+    profile: perfil1,
+  );
+
+  Candidate candidato2 = Candidate(
+    code: "C002",
+    name: "Carlos Fernández",
+    address: "Calle Menor 2",
+    phone: "555-8765",
+    birthDate: DateTime.now(),
+    photo: "foto2.jpg",
+    province: "Barcelona",
+    gender: Gender.male,
+    heightRange: "1.80m",
+    ageRange: "30-35",
+    hairColor: "Castaño",
+    eyeColor: "Verdes",
+    specialty: Specialty.actor,
+    experience: "10 años",
+    representative: representante2,
+    profile: perfil2,
+  );
+
+  // Crear pruebas individuales y asignar candidatos
+  IndividualTest prueba1 = IndividualTest(
+    number: 1,
+    date: DateTime.now(),
+    room: "Sala 101",
+    description: "Descripción de la prueba 1",
+    candidates: [candidato1],
+  );
+
+  IndividualTest prueba2 = IndividualTest(
+    number: 2,
+    date: DateTime.now(),
+    room: "Sala 102",
+    description: "Descripción de la prueba 2",
+    candidates: [candidato2],
+  );
+
+  IndividualTest prueba3 = IndividualTest(
+    number: 3,
+    date: DateTime.now(),
+    room: "Sala 103",
+    description: "Descripción de la prueba 3",
+    candidates: [candidato1, candidato2],
+  );
+
+  // Crear fases de casting
+  PhaseCasting fase1 = PhaseCasting(
+    phaseNumber: 1,
+    startDate: DateTime.now(),
+    phaseId: "Fase001",
+    tests: [prueba1, prueba2],
+  );
+
+  PhaseCasting fase2 = PhaseCasting(
+    phaseNumber: 2,
+    startDate: DateTime.now(),
+    phaseId: "Fase002",
+    tests: [prueba3],
+  );
+
+  // Crear agentes de casting
+  CastingAgent agente1 = CastingAgent(
+    employeeNumber: "A001",
+    dni: "12345678X",
+    name: "Pedro Gómez",
+    address: "Calle Luna 5",
+  );
+
+  CastingAgent agente2 = CastingAgent(
+    employeeNumber: "A002",
+    dni: "87654321Y",
+    name: "Laura Martínez",
+    address: "Calle Sol 10",
+  );
+
+  // Crear castings
+  Casting casting1 = Casting(
+    code: "CAST001",
+    name: "Colección Invierno",
+    description: "Casting para línea de ropa de invierno",
+    hiringDate: DateTime.now(),
+    cost: 10000.0,
+    type: CastingType.inPerson,
+    phases: [fase1, fase2],
+    agent: agente1,
+  );
+
+  Casting casting2 = Casting(
+    code: "CAST002",
+    name: "Anuncio TV",
+    description: "Casting para anuncio de televisión",
+    hiringDate: DateTime.now(),
+    cost: 5000.0,
+    type: CastingType.online,
+    agent: agente2,
+  );
+
+  // Crear clientes
+  Client cliente1 = Client(
+    code: "CL001",
+    name: "ModaCorp",
+    address: "Calle Estilo 8",
+    phone: "555-1122",
+    contactPerson: "Luis Herrera",
+    activityType: ActivityType.fashion,
+    castings: [],
+  );
+
+  Client cliente2 = Client(
+    code: "CL002",
+    name: "CineProducciones",
+    address: "Avenida Cine 15",
+    phone: "555-3344",
+    contactPerson: "Elena Rodríguez",
+    activityType: ActivityType.cinema,
+    castings: [],
+  );
+
+  // Asignar castings a clientes
+  cliente1.castings.add(casting1);
+  cliente2.castings.add(casting2);
+
+  // Mostrar resultados simulados
+  print("Cliente 1 (${cliente1.name}) tiene los siguientes castings:");
+  for (var casting in cliente1.castings) {
+    print("- ${casting.name}: ${casting.description}");
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  print("\nCliente 2 (${cliente2.name}) tiene los siguientes castings:");
+  for (var casting in cliente2.castings) {
+    print("- ${casting.name}: ${casting.description}");
   }
 
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+  // Mostrar los candidatos que participaron en las pruebas del primer casting
+  print("\nCandidatos que participaron en el primer casting:");
+  for (var fase in casting1.phases) {
+    for (var prueba in fase.tests) {
+      for (var candidato in prueba.candidates) {
+        print("- ${candidato.name} en ${prueba.description}");
+      }
+    }
   }
 }

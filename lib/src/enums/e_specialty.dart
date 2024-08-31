@@ -1,4 +1,4 @@
 enum Specialty {
-    modelo,
+    model,
     actor,
 }

@@ -1,5 +1,5 @@
 enum Gender {
-    masculino,
-    femenino,
-    otro,
+    male,
+    female,
+    other,
 }

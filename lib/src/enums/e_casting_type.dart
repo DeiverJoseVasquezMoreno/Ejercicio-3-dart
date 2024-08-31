@@ -1,4 +1,4 @@
 enum CastingType {
-    presencial,
+    inPerson,
     online,
 }

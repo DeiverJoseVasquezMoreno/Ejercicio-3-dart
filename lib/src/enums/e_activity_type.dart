@@ -1,5 +1,5 @@
 enum ActivityType {
-    moda,
-    publicidad,
-    cine,
+    fashion,
+    advertising,
+    cinema,
 }
